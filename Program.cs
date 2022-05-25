@@ -9,10 +9,16 @@ namespace Quest
     {
         static void Main(string[] args)
         {
+            Robe robe = new Robe()
+            {
+                Length = 7,
+                Colors = new List<string> { "Red", "Green", "Yellow" }
+            };
 
             // Make a new "Adventurer" object using the "Adventurer" class
             Console.WriteLine("What is your name?");
-            Adventurer theAdventurer = new Adventurer(Console.ReadLine());
+            Adventurer theAdventurer = new Adventurer(Console.ReadLine(), robe);
+            Console.WriteLine(theAdventurer.getDescription());
 
 
             // Create a few challenges for our Adventurer's quest
@@ -48,7 +54,7 @@ namespace Quest
             int minAwesomeness = 0;
             int maxAwesomeness = 100;
 
-            
+
 
             // A list of challenges for the Adventurer to complete
             // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
@@ -60,56 +66,58 @@ namespace Quest
                 guessRandom,
                 favoriteBeatle
             };
-            void PlayAgainQuestion() 
+            void PlayAgainQuestion()
             {
-            Console.WriteLine("Would you like to play again? (Y/N)");
+                Console.WriteLine("Would you like to play again? (Y/N)");
 
-            string playAgainAnswer = Console.ReadLine();
+                string playAgainAnswer = Console.ReadLine();
 
-            switch (playAgainAnswer.ToLower()) {
+                switch (playAgainAnswer.ToLower())
+                {
 
-                case "y":
-                ChallengeAsker();
-                break;
+                    case "y":
+                        ChallengeAsker();
+                        break;
 
-                default:
-                Console.WriteLine("Come back again sometime!");
-                break;
-                
-            }
+                    default:
+                        Console.WriteLine("Come back again sometime!");
+                        break;
+
+                }
             }
 
             // Loop through all the challenges and subject the Adventurer to them
-            void ChallengeAsker() {
-            foreach (Challenge challenge in challenges)
+            void ChallengeAsker()
             {
-                challenge.RunChallenge(theAdventurer);
-            }
+                foreach (Challenge challenge in challenges)
+                {
+                    challenge.RunChallenge(theAdventurer);
+                }
 
-            
-            // This code examines how Awesome the Adventurer is after completing the challenges
-            // And praises or humiliates them accordingly
-            if (theAdventurer.Awesomeness >= maxAwesomeness)
-            {
-                Console.WriteLine("YOU DID IT! You are truly awesome!");
-                PlayAgainQuestion();
-            }
-            else if (theAdventurer.Awesomeness <= minAwesomeness)
-            {
-                Console.WriteLine("Get out of my sight. Your lack of awesomeness offends me!");
-                PlayAgainQuestion();
-            }
-            else
-            {
-                Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
-                PlayAgainQuestion();
-            }
+
+                // This code examines how Awesome the Adventurer is after completing the challenges
+                // And praises or humiliates them accordingly
+                if (theAdventurer.Awesomeness >= maxAwesomeness)
+                {
+                    Console.WriteLine("YOU DID IT! You are truly awesome!");
+                    PlayAgainQuestion();
+                }
+                else if (theAdventurer.Awesomeness <= minAwesomeness)
+                {
+                    Console.WriteLine("Get out of my sight. Your lack of awesomeness offends me!");
+                    PlayAgainQuestion();
+                }
+                else
+                {
+                    Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
+                    PlayAgainQuestion();
+                }
 
             }
             ChallengeAsker();
 
 
-        
+
         }
     }
 }
