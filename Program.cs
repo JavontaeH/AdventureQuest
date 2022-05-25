@@ -20,10 +20,12 @@ namespace Quest
                 ShininessLevel = 25
             };
 
+
             // Make a new "Adventurer" object using the "Adventurer" class
             Console.WriteLine("What is your name?");
             Adventurer theAdventurer = new Adventurer(Console.ReadLine(), robe, hat);
             Console.WriteLine(theAdventurer.getDescription());
+            Prize prize = new Prize("Hooray!");
 
 
             // Create a few challenges for our Adventurer's quest
@@ -47,7 +49,7 @@ namespace Quest
     3) George
     4) Ringo
 ",
-                4, 20
+                4, 100
             );
 
             // "Awesomeness" is like our Adventurer's current "score"
@@ -105,16 +107,19 @@ namespace Quest
                 if (theAdventurer.Awesomeness >= maxAwesomeness)
                 {
                     Console.WriteLine("YOU DID IT! You are truly awesome!");
+                    prize.ShowPrize(theAdventurer);
                     PlayAgainQuestion();
                 }
                 else if (theAdventurer.Awesomeness <= minAwesomeness)
                 {
                     Console.WriteLine("Get out of my sight. Your lack of awesomeness offends me!");
+                    prize.ShowPrize(theAdventurer);
                     PlayAgainQuestion();
                 }
                 else
                 {
                     Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
+                    prize.ShowPrize(theAdventurer);
                     PlayAgainQuestion();
                 }
 
