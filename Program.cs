@@ -15,9 +15,14 @@ namespace Quest
                 Colors = new List<string> { "Red", "Green", "Yellow" }
             };
 
+            Hat hat = new Hat()
+            {
+                ShininessLevel = 25
+            };
+
             // Make a new "Adventurer" object using the "Adventurer" class
             Console.WriteLine("What is your name?");
-            Adventurer theAdventurer = new Adventurer(Console.ReadLine(), robe);
+            Adventurer theAdventurer = new Adventurer(Console.ReadLine(), robe, hat);
             Console.WriteLine(theAdventurer.getDescription());
 
 
